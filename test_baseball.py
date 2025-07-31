@@ -20,4 +20,5 @@ def test_baseball_is_valid_input(baseball):
     assert_illegal_argument(baseball, '12')
     assert_illegal_argument(baseball, '1234')
     assert_illegal_argument(baseball, '12s')
+    assert_illegal_argument(baseball, '112')
 
