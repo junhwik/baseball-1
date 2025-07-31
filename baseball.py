@@ -42,7 +42,8 @@ class BaseBall:
         if guess_number == self._question:
             return GameResult(True, 3, 0)
 
-        return None
+        return GameResult(False, 0, 0)
+
 
     def _assert_invalid_input(self, guess_number: str):
         if not guess_number:

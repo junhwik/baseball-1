@@ -24,3 +24,11 @@ def test_baseball_if_matched_number(baseball):
     assert result.solved == True
     assert result.strikes == 3
     assert result.balls == 0
+
+def test_baseball_if_unmatched_number(baseball):
+    baseball.question = '123'
+    result: GameResult = baseball.guess('456')
+    assert result is not None
+    assert result.solved == False
+    assert result.strikes == 0
+    assert result.balls == 0
