@@ -47,7 +47,14 @@ class BaseBall:
         for i in range(3):
             if guess_number[i] == self._question[i]:
                 strikes_count += 1
-        return GameResult(False, strikes_count, 0)
+
+        balls_count = 0
+        for i in range(3):
+            for j in range(3):
+                if i != j and guess_number[i] == self._question[j]:
+                    balls_count += 1
+
+        return GameResult(False, strikes_count, balls_count)
 
 
 
