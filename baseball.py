@@ -11,4 +11,8 @@ class BaseBall:
         if len(guess_number) !=3:
             raise TypeError("3자리 숫자 입력")
 
+        for number in guess_number:
+            if not ord('0')<=ord(number)<=ord('9'):
+                raise TypeError("3자리 숫자 입력")
+
         pass
