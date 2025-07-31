@@ -43,20 +43,26 @@ class BaseBall:
         if guess_number == self._question:
             return GameResult(True, 3, 0)
 
-        strikes_count=0
-        for i in range(3):
-            if guess_number[i] == self._question[i]:
-                strikes_count += 1
+        strikes_count = self.count_strikes(guess_number)
 
+        balls_count = self.count_balls(guess_number)
+
+        return GameResult(False, strikes_count, balls_count)
+
+    def count_balls(self, guess_number):
         balls_count = 0
         for i in range(3):
             for j in range(3):
                 if i != j and guess_number[i] == self._question[j]:
                     balls_count += 1
+        return balls_count
 
-        return GameResult(False, strikes_count, balls_count)
-
-
+    def count_strikes(self, guess_number):
+        strikes_count = 0
+        for i in range(3):
+            if guess_number[i] == self._question[i]:
+                strikes_count += 1
+        return strikes_count
 
     def _assert_invalid_input(self, guess_number: str):
         if not guess_number:
