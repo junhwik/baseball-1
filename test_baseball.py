@@ -32,3 +32,9 @@ def test_baseball_if_matched_number(baseball):
 def test_baseball_if_unmatched_number(baseball):
     baseball.question = '123'
     assert_matched_number(baseball.guess('456'), solved=False, strikes=0, balls=0)
+
+def test_baseball_if_two_strikes_number(baseball):
+    baseball.question = '123'
+    assert_matched_number(baseball.guess('126'), solved=False, strikes=2, balls=0)
+    assert_matched_number(baseball.guess('163'), solved=False, strikes=2, balls=0)
+    assert_matched_number(baseball.guess('823'), solved=False, strikes=2, balls=0)

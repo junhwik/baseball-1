@@ -1,6 +1,7 @@
 import dataclasses
 from mimetypes import guess_type
 from random import random
+from wsgiref.util import guess_scheme
 
 
 class GameResult:
@@ -42,7 +43,12 @@ class BaseBall:
         if guess_number == self._question:
             return GameResult(True, 3, 0)
 
-        return GameResult(False, 0, 0)
+        strikes_count=0
+        for i in range(3):
+            if guess_number[i] == self._question[i]:
+                strikes_count += 1
+        return GameResult(False, strikes_count, 0)
+
 
 
     def _assert_invalid_input(self, guess_number: str):
