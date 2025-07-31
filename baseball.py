@@ -5,24 +5,44 @@ from random import random
 
 class GameResult:
     def __init__(self, solved, strikes, balls):
-        self.solved = solved
-        self.strikes = strikes
-        self.balls = balls
+        self._solved = solved
+        self._strikes = strikes
+        self._balls = balls
+
+    @property
+    def solved(self):
+        return self._solved
+
+    @property
+    def strikes(self):
+        return self._strikes
+
+    @property
+    def balls(self):
+        return self._balls
 
 
 class BaseBall:
     def __init__(self):
-        self.question = None
+        self._question = ""
         # Target Number is '123'
         ...
+
+    @property
+    def question(self):
+        raise AttributeError("읽을 수 없음")
+
+    @question.setter
+    def question(self, value):
+        self._question = value
 
     def guess(self, guess_number) -> GameResult:
         self._assert_invalid_input(guess_number)
 
-        if guess_number == self.question:
+        if guess_number == self._question:
             return GameResult(True, 3, 0)
 
-        pass
+        return None
 
     def _assert_invalid_input(self, guess_number: str):
         if not guess_number:
