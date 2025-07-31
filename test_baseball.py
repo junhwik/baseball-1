@@ -1,5 +1,5 @@
 import pytest
-from baseball import BaseBall
+from baseball import BaseBall, GameResult
 
 
 @pytest.fixture
@@ -17,3 +17,10 @@ def test_baseball_is_valid_input(baseball, invalid_input):
     assert_illegal_argument(baseball, invalid_input)
 
 
+def test_baseball_if_matched_number(baseball):
+    baseball.question = '123'
+    result: GameResult = baseball.guess('123')
+    assert result is not None
+    assert result.solved == True
+    assert result.strikes == 3
+    assert result.balls == 0

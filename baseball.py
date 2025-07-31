@@ -1,14 +1,26 @@
+import dataclasses
 from mimetypes import guess_type
 from random import random
 
 
+class GameResult:
+    def __init__(self, solved, strikes, balls):
+        self.solved = solved
+        self.strikes = strikes
+        self.balls = balls
+
+
 class BaseBall:
     def __init__(self):
-        # Target Number is '159'
+        self.question = None
+        # Target Number is '123'
         ...
 
-    def guess(self, guess_number):
+    def guess(self, guess_number) -> GameResult:
         self._assert_invalid_input(guess_number)
+
+        if guess_number == self.question:
+            return GameResult(True, 3, 0)
 
         pass
 
@@ -18,7 +30,6 @@ class BaseBall:
 
         if len(guess_number) != 3:
             raise TypeError("3자리 숫자 입력")
-
 
         if not guess_number.isdigit():
             raise TypeError("3자리 숫자 입력")
