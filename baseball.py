@@ -5,7 +5,7 @@ class BaseBall:
         # Target Number is '159'
         ...
 
-    def guess(self, param):
-        if not param:
+    def guess(self, guess_number):
+        if not guess_number:
             raise TypeError("입력값이 없습니다.")
         pass
