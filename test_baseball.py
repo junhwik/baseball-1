@@ -8,17 +8,12 @@ def baseball():
 
 
 def assert_illegal_argument(baseball, guess_number):
-    try:
+    with pytest.raises(TypeError):
         baseball.guess(guess_number)
-        pytest.fail()
-    except TypeError:
-        pass
 
 
-def test_baseball_is_valid_input(baseball):
-    assert_illegal_argument(baseball, None)
-    assert_illegal_argument(baseball, '12')
-    assert_illegal_argument(baseball, '1234')
-    assert_illegal_argument(baseball, '12s')
-    assert_illegal_argument(baseball, '112')
+@pytest.mark.parametrize("invalid_input", [None, '12', '1234', '12s', '112'])
+def test_baseball_is_valid_input(baseball, invalid_input):
+    assert_illegal_argument(baseball, invalid_input)
+
 
